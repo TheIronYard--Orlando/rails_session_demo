@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SessionDemo</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% flash.each do |key, msg| %>
+  <p class="<%= key %>"><%= msg %></p>
+<% end %>
+<%= session[:user] %>
+<% if session[:user] %>
+  <%= form_tag '/log_out', method: :delete do %>
+    <%= submit_tag 'log out' %>
+  <% end %>
+<% else %>
+  <%= link_to 'log in', '/login' %>
+<% end %>
+<%= yield %>
+
+</body>
+</html>
