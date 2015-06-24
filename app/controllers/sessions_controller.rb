@@ -3,7 +3,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if User.find_by(name: params[:user])
+    user = User.find_by(name: params[:user])
+    if user && user.password == params[:password]
       session[:user] = params[:user]
       redirect_to '/page_1', notice: 'Welcome to the site!'
     else

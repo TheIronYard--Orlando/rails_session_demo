@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.destroy_all
+
 %w(Heidi Erik Leslie Devan John Brian).each do |name|
-  User.create(name: name)
+  User.create(name: name, password: name.reverse)
 end
